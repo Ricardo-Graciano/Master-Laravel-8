@@ -18,7 +18,12 @@ class CreateBlogPostsTable extends Migration
             $table->timestamps();
 
             $table->string('title')->default('');
-            $table->string('content')->default('');
+
+            if (env('DB_CONNECTION') == 'sqlite_testing'){
+                $table->string('content')->default('');
+            } else {
+                $table->string('content');
+            }
         });
     }
 
