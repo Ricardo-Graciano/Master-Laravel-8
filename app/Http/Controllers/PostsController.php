@@ -40,7 +40,7 @@ class PostsController extends Controller
 
         return view(
             'posts.index',
-            ['posts' => BlogPost::withCount('comments')->get()]
+            ['posts' => BlogPost::latested()->withCount('comments')->get()]
         );
     }
 
@@ -80,6 +80,13 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        // return view(
+        //     'posts.show',
+        //     ['post' => BlogPost::with(['comments' => function ($query) {
+        //         return $query->latested();
+        //     }])->findOrFail($id)]
+        // );
+
         return view(
             'posts.show',
             ['post' => BlogPost::with('comments')->findOrFail($id)]
