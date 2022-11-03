@@ -85,7 +85,8 @@ class PostTest extends TestCase
 
     public function testUpdateValid()
     {
-        $post = $this->createDummyBlogPost();
+        $user = $this->user();
+        $post = $this->createDummyBlogPost($user->id);
 
         $this->assertDatabaseHas('blog_posts', $post->toArray());
 
@@ -108,7 +109,8 @@ class PostTest extends TestCase
 
     public function testDelete() 
     {
-        $post = $this->createDummyBlogPost();
+        $user = $this->user();
+        $post = $this->createDummyBlogPost($user->id);
         $this->assertDatabaseHas('blog_posts', $post->toArray());
 
         $this->actingAs($this->user())
@@ -121,7 +123,7 @@ class PostTest extends TestCase
         $this->assertSoftDeleted('blog_posts', $post->toArray());
     }
 
-    private function createDummyBlogPost(): BlogPost
+    private function createDummyBlogPost($userId = null): BlogPost
     {
         // $post = new BlogPost();
         // $post->title = 'New title';
@@ -129,6 +131,10 @@ class PostTest extends TestCase
         // $post->save();
         // return $post;
 
-        return BlogPost::factory()->forTest()->create();
+        return BlogPost::factory()->forTest()->create(
+            [
+                'user_id' => $userId ?? $this->user()->id
+            ]
+        );
     }
 }
