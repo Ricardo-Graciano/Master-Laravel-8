@@ -28,6 +28,11 @@ class BlogPost extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
+    }
+
     public function scopeLatested(Builder $query)
     {
         return $query->orderBy(static::CREATED_AT, 'desc');

@@ -12591,3 +12591,7 @@ fieldset:disabled .btn {
   }
 }
 
+.badge-lg {
+  font-size: 1rem;
+}
+
