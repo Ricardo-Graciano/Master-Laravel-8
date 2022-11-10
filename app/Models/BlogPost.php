@@ -35,7 +35,7 @@ class BlogPost extends Model
 
     public function image()
     {
-        return $this->hasOne('App\Models\Image');
+        return $this->morphOne('App\Models\Image', 'imageable');
     }
 
     public function scopeLatested(Builder $query)
