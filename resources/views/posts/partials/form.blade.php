@@ -9,4 +9,8 @@
     <label for="content">Content</label>
     <textarea class="form-control" id="content" name="content">{{ old('content', optional($post ?? null)->content) }}</textarea>
 </div>
+<div class="form-group">
+    <label>Thumbnail</label>
+    <input type="file" name="thumbnail" class="form-control-file"/>
+</div>
 @errors @enderrors
