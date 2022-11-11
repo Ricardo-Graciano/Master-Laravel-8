@@ -36,18 +36,13 @@
         <p>Currently read by {{ $counter }}</p>
 
         <h4>Comments</h4>
+        
+        <p>{{ route('posts.comments.store', ['post' => $post->id]) }}</p>
+        @commentForm(['route' => route('posts.comments.store', ['post' => $post->id])])
+        @endcommentForm
 
-        @include('comments.partials.form')
-
-        @forelse ($post->comments as $comment)
-            <p>
-                {{ $comment->content }}
-            </p>
-            @updated(['date' => $comment->created_at, 'name' => $comment->user->name])
-            @endupdated
-        @empty
-            <p>No comments yet</p>
-        @endforelse
+        @commentList(['comments' => $post->comments])
+        @endcommentList
     </div>
     <div class="col col-4">
         @include('posts.partials.activity')

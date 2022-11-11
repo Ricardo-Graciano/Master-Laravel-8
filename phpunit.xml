@@ -29,6 +29,7 @@
         <server name="TELESCOPE_ENABLED" value="false"/>
 
 
-        <env name="DB_CONNECTION" value="sqlite_testing"/>
+        <env name="DB_CONNECTION" value="mysql_testing"/>
+        <env name="DB_DATABASE" value="laravel-testing"/>
     </php>
 </phpunit>
