@@ -37,7 +37,6 @@
 
         <h4>Comments</h4>
         
-        <p>{{ route('posts.comments.store', ['post' => $post->id]) }}</p>
         @commentForm(['route' => route('posts.comments.store', ['post' => $post->id])])
         @endcommentForm
 
